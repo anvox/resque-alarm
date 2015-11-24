@@ -8,6 +8,7 @@ module Resque
           if size > threshold
             cr[q.to_sym] = Resque.size(q)
           end
+          cr
         end
         if long_tailer.length > 1
           puts "Queue is too long:"
