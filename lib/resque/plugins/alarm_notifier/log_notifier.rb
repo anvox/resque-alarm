@@ -2,12 +2,14 @@ module Resque
   module Plugins
     module AlarmNotifier
       class LogNotifier
-        def initialize(logger, level)
+        def initialize(logger = nil, level = :info)
           @logger = logger
           @level = level
         end
         def notify(params)
-          @logger.info format(params)
+          level = level.to_sym
+          return if @logger.respond_to?(level)
+          @logger.send(level, format(params))
         end
 
         private
