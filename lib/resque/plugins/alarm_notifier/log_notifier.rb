@@ -4,12 +4,11 @@ module Resque
       class LogNotifier
         def initialize(logger = nil, level = :info)
           @logger = logger
-          @level = level
+          @level = level.to_sym
         end
         def notify(params)
-          level = level.to_sym
-          return if @logger.respond_to?(level)
-          @logger.send(level, format(params))
+          return if @logger.respond_to?(@level)
+          @logger.send(@level, format(params))
         end
 
         private
