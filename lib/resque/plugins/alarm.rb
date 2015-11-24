@@ -11,23 +11,17 @@ module Resque
           cr
         end
         unless long_tailer.empty?
-          puts "Queue is too long:"
-          puts long_tailer.inspect
-          # Mailer.alarm(queue, size)
+          notify(long_tailer)
         end
       end
 
       private
-      def sleep_time
-        0
-      end
       def threshold
-        1
+        10
       end
-      def last_alarm
-        Time.now
+      def notify(params)
+        Resque::Plugins::Alarm::LogNotifier.notify(params)
       end
-
     end
   end
 end
