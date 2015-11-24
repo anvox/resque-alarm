@@ -8,6 +8,7 @@ module Resque
         end
       end
       def after_enqueue_check_alarm(*args)
+        puts "HOOKED"
         # Dont know which queue to enqueue, so check'em all
         long_tailer = Resque.queues.inject({}) do|cr,q|
           size = Resque.size(q)
@@ -16,6 +17,8 @@ module Resque
           end
           cr
         end
+        puts "GOT THE TAIL"
+        puts long_tailer.inspect
         unless long_tailer.empty?
           notify(long_tailer)
         end
