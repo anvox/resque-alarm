@@ -10,7 +10,7 @@ module Resque
           end
           cr
         end
-        if long_tailer.length > 1
+        unless long_tailer.empty?
           puts "Queue is too long:"
           puts long_tailer.inspect
           # Mailer.alarm(queue, size)
