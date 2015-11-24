@@ -7,8 +7,6 @@ module Resque
           @level = level
         end
         def notify(params)
-          puts "REACHED NOTIFY"
-          puts @logger.inspect
           @logger.info format(params)
         end
 
