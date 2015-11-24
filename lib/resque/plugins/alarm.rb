@@ -11,6 +11,7 @@ module Resque
         # end
         Rails.logger.info "Executing Alarm.after_enqueue_check_alarm"
         puts "PUT: Executing Alarm.after_enqueue_check_alarm"
+        puts args.inspect
       end
 
       private
