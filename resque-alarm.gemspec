@@ -12,5 +12,5 @@ Gem::Specification.new do |s|
   s.files            += Dir.glob("lib/**/*")
   s.files            += Dir.glob("test/**/*")
 
-  s.description       = ""
+  s.description       = "A Resque plugin to alarm when queue is too long."
 end
