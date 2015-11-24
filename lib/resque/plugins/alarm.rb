@@ -2,16 +2,18 @@ module Resque
   module Plugins
     module Alarm
       def after_enqueue_check_alarm(*args)
-        # queue = ""
-        # size = Resque.size(queue)
-        # if size > threshold
-        #   if Time.now - last_alarm > sleep_time
-        #     Mailer.alarm(queue, size)
-        #   end
-        # end
-        Rails.logger.info "Executing Alarm.after_enqueue_check_alarm"
-        puts "PUT: Executing Alarm.after_enqueue_check_alarm"
-        puts args.inspect
+        # Dont know which queue to enqueue, so check'em all
+        long_tailer = Resque.queues.inject({}) do|cr,q|
+          size = Resque.size(q)
+          if size > threshold
+            cr[q.to_sym] = Resque.size(q)
+          end
+        end
+        if long_tailer.length > 1
+          puts "Queue is too long:"
+          puts long_tailer.inspect
+          # Mailer.alarm(queue, size)
+        end
       end
 
       private
@@ -19,7 +21,7 @@ module Resque
         0
       end
       def threshold
-        0
+        1
       end
       def last_alarm
         Time.now
