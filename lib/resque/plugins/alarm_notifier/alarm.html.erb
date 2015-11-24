@@ -1,11 +1,11 @@
 <p>
-Long queues:
+Slow queues:
 </p>
 <p>
   <ul>
     <% @params.each do |queue, size| %>
       <li>
-          <span>Queue: <span><strong><%= queue %></strong> has <%= size %>items
+          <span>Queue: <span><strong><%= queue %></strong> has <%= size %> items
       </li>
     <% end %>
   </ul>
