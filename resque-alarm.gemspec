@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = "resque-alarm"
-  s.version           = "0.1.0"
+  s.version           = "0.1.2"
   s.date              = Time.now.strftime('%Y-%m-%d')
   s.summary           = "A Resque plugin to alarm when queue is too long."
   s.homepage          = "https://github.com/heosuax/resque-alarm"
