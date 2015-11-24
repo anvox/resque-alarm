@@ -2,7 +2,7 @@ module Resque
   module Plugins
     module AlarmNotifier
       class MailNotifier
-        def initialize(from, to, template = "alarm", subject = "Queue length reached alarm", tags = ["Resque"])
+        def initialize(from, to, subject = "Queue length reached alarm", tags = ["Resque"], template = "alarm")
           @from = from
           @to = to
           @template = template
