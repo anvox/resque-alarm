@@ -7,10 +7,18 @@ To use this gem, config in an initializer
 
       require 'resque/plugins/alarm'
       require 'resque/plugins/alarm_notifier/log_notifier'
+      require 'resque/plugins/alarm_notifier/mail_notifier'
 
       Resque::Plugins::Alarm.configure do |config|
         config.threshold = 10 # Perform notify when queue have more than 10 items
         config.notifier = Resque::Plugins::AlarmNotifier::LogNotifier.new(Rails.logger, :info) # Notify to rails log
+        # OR using mail notifier
+        config.notifier = Resque::Plugins::AlarmNotifier::MailNotifier.new(
+          "ops@saleshood.com",
+          "ops@saleshood.com",
+          "alarm",
+          "Queue length reached alarm",
+          ["Saleshood",Settings.mailer.host_app,"Resque"] )
       end
 
 Extend in job:
