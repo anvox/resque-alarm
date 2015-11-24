@@ -11,7 +11,7 @@ module Resque
         # Dont know which queue to enqueue, so check'em all
         long_tailer = Resque.queues.inject({}) do|cr,q|
           size = Resque.size(q)
-          if size > self.class.threshold
+          if size > Resque::Plugins::Alarm.threshold
             cr[q.to_sym] = Resque.size(q)
           end
           cr
@@ -23,7 +23,7 @@ module Resque
 
       private
       def notify(params)
-        self.class.notifier.notify(params)
+        Resque::Plugins::Alarm.notifier.notify(params)
       end
     end
   end
