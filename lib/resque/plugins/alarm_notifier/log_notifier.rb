@@ -1,6 +1,6 @@
 module Resque
   module Plugins
-    module Alarm
+    module AlarmNotifier
       class LogNotifier
         def initialize(logger, level)
           @logger = logger
@@ -12,7 +12,7 @@ module Resque
 
         private
         def format(params)
-          { app: "app", source: "resque", type: "queue_too_long", queues: params }
+          { app: "app", source: "resque", type: "queue_too_long", queues: params}
         end
       end
     end
