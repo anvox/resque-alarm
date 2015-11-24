@@ -10,7 +10,8 @@ module Resque
           @tags = tags
         end
         def notify(params)
-          text = ERB.new(File.read(File.dirname(__FILE__) + "/#{@template}.html.erb")).result({params: params})
+          @params = params
+          text = ERB.new(File.read(File.dirname(__FILE__) + "/#{@template}.html.erb")).result(binding)
           subject = "[#{@tags.join('][')}] #{@subject}"
           puts text
           puts "================"
