@@ -7,7 +7,7 @@ module Resque
           @level = level.to_sym
         end
         def notify(params)
-          return if @logger.respond_to?(@level)
+          return unless @logger.respond_to?(@level)
           @logger.send(@level, format(params))
         end
 
