@@ -14,11 +14,10 @@ To use this gem, config in an initializer
         config.notifier = Resque::Plugins::AlarmNotifier::LogNotifier.new(Rails.logger, :info) # Notify to rails log
         # OR using mail notifier
         config.notifier = Resque::Plugins::AlarmNotifier::MailNotifier.new(
-          "ops@saleshood.com",
-          "ops@saleshood.com",
-          "alarm",
-          "Queue length reached alarm",
-          ["Saleshood",Settings.mailer.host_app,"Resque"] )
+          "from@from.com",
+          "to@to.com",
+          "Queue length reached alarm", # subject
+          ["Resque"] ) # tags, merge with subject to become "[Resque] Queue length reached alarm"
       end
 
 Extend in job:
