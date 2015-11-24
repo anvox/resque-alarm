@@ -1,7 +1,7 @@
 module Resque
   module Plugins
-    class Alarm
-      class << self
+    module Alarm
+      module << self
         attr_accessor :notifier, :threshold
         def configure
           yield self
