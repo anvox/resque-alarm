@@ -2,9 +2,10 @@ module Resque
   module Plugins
     module AlarmNotifier
       class LogNotifier
-        def initialize(logger = nil, level = :info)
+        def initialize(logger = nil, level = :info, app_name = "app")
           @logger = logger
           @level = level.to_sym
+          @app_name = app_name
         end
         def notify(params)
           return unless @logger.respond_to?(@level)
@@ -13,7 +14,7 @@ module Resque
 
         private
         def format(params)
-          { app: "app", source: "resque", type: "queue_too_long", queues: params}
+          { app: @app_name, source: "resque-queue-length-alarm", type: "resque_queue_too_long", queues: params}
         end
       end
     end
