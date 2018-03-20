@@ -14,7 +14,7 @@ module Resque
 
         private
         def format(params)
-          { app: @app_name, source: "resque-queue-length-alarm", type: "resque_queue_too_long", queues: params}
+          { app: @app_name, source: "resque-queue-length-alarm", type: "resque_queue_too_long", queues: params}.to_json
         end
       end
     end
