@@ -14,4 +14,7 @@ Gem::Specification.new do |s|
 
   s.description       = "A Resque plugin to alarm when queue is too long. Using email or rails log, or others log system. \
   Use other tools to analyze result. Queue is checked every time job enqueued."
+
+  s.add_runtime_dependency 'resque'
+  s.add_development_dependency 'actionmailer'
 end
